@@ -15,15 +15,16 @@ class Amogus {
     update() {
         this.x += this.xSpeed * this.game.clockTick;
         this.y += this.ySpeed * this.game.clockTick;
-        if (this.x > 1024 - this.width / 2) {
+        if (this.x > 1024 - this.width / 2 && this.xSpeed > 0) {
             this.xSpeed *= -1;
             this.animator.yStart += 250;
         }
-        if (this.x < 0) {
+        if (this.x < 0 && this.xSpeed < 0) {
             this.xSpeed *= -1;
             this.animator.yStart -= 250;
         }
-        if (this.y > 768 - this.height / 2 || this.y < 0) this.ySpeed *= -1;
+        if (this.y > 768 - this.height / 2 && this.ySpeed > 0) this.ySpeed *= -1;
+        if (this.y < 0 && this.ySpeed < 0) this.ySpeed *= -1;
     };
     
     draw(ctx) {
