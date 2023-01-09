@@ -5,12 +5,19 @@ class Amogus {
             0, 250, 180, 250, 12, 0.05);
         this.x = 0;
         this.y = 0;
-        this.speed = 150;
+        this.xSpeed = 150;
+        this.ySpeed = 75;
     };
     
     update() {
-        this.x += this.speed * this.game.clockTick;
-        if (this.x > 1024) this.x = 0;
+        this.x += this.xSpeed * this.game.clockTick;
+        this.y += this.ySpeed * this.game.clockTick;
+        if (this.x > 1024 - 90 || this.x < 0) {
+            this.xSpeed *= -1;
+        }
+        if (this.y > 768 - 125 || this.y < 0) {
+            this.ySpeed *= -1;
+        }
     };
     
     draw(ctx) {
