@@ -8,22 +8,27 @@ class Amogus {
         this.height = 250;
         this.xSpeed = 150;
         this.ySpeed = 75;
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./assets/amogus.png"),
-            0, this.height, this.width, this.height, 12, 0.05);
+        this.animatorR = new Animator(ASSET_MANAGER.getAsset("./assets/amogus.png"),
+            this.width, this.height,
+            12, 0, this.height, false, false, 24);
+        this.animatorL = new Animator(ASSET_MANAGER.getAsset("./assets/amogus.png"),
+            this.width, this.height,
+            12, 0, this.height * 2, false, false, 24);
+        this.animator = this.animatorR;
     };
     
     update() {
         this.x += this.xSpeed * this.game.clockTick;
         this.y += this.ySpeed * this.game.clockTick;
-        if (this.x > 1024 - this.width / 2 && this.xSpeed > 0) {
+        if (this.x > 960 - this.width / 2 && this.xSpeed > 0) {
             this.xSpeed *= -1;
-            this.animator.yStart += this.height;
+            this.animator = this.animatorL;
         }
         if (this.x < 0 && this.xSpeed < 0) {
             this.xSpeed *= -1;
-            this.animator.yStart -= this.height;
+            this.animator = this.animatorR;
         }
-        if (this.y > 768 - this.height / 2 && this.ySpeed > 0) this.ySpeed *= -1;
+        if (this.y > 720 - this.height / 2 && this.ySpeed > 0) this.ySpeed *= -1;
         if (this.y < 0 && this.ySpeed < 0) this.ySpeed *= -1;
     };
     
